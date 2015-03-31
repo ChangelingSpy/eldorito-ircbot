@@ -15,7 +15,7 @@ __module_description__ = "IRC bot for #eldorito"
 
 eldorito_server = "irc.gamesurge.net"
 public_channel = "#eldorito"
-private_channel = "#dorito-dev"
+private_channel = ""
 
 pub = hexchat.find_context(server=eldorito_server, channel=public_channel)
 dev = hexchat.find_context(server=eldorito_server, channel=private_channel)
@@ -30,6 +30,9 @@ def nameFilter (word):
 
 def pubChathook (word, word_eol, attr):
     if word[2] == public_channel:
+        googl = re.search("goo.gl", word_eol[0])
+        if googl:
+            pub.command("KICK "+nameFilter(word[0])+" No short URLs please")
         return hexchat.EAT_NONE
 
 def devChathook (word, word_eol, attr):
@@ -37,6 +40,7 @@ def devChathook (word, word_eol, attr):
         return hexchat.EAT_NONE
 
 def pubJoinhook (word, word_eol, attr):
+    sleep(1)
     if word[2] == public_channel:
         list = hexchat.get_list("users")
         nick_filtered = nameFilter(word[0])
