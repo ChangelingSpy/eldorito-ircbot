@@ -13,7 +13,8 @@ __module_name__ = "doritoBot"
 __module_version__ = "0.1"
 __module_description__ = "IRC bot for #eldorito"
 
-eldorito_server = "irc.gamesurge.net"
+#If unable to connect, use alt.irc.snoonet.org on Port 80, or 443 for SSL, instead.
+eldorito_server = "irc.snoonet.org"
 public_channel = "#eldorito"
 private_channel = ""
 
